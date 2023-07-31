@@ -1,6 +1,7 @@
 import multer from "multer";
 import { v4 as uuid } from "uuid";
 import boom from "@hapi/boom";
+import fs from 'fs'
 
 //const upload = multer({ dest: DIR })
 const MIME_TYPE = {
@@ -11,6 +12,7 @@ const MIME_TYPE = {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        fs.mkdirSync('./upload', { recursive: true })
         cb(null, './upload');
     },
     filename:(req, file, cb)=> {
